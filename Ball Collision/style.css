@@ -17,6 +17,7 @@ body {
 
 .container {
   place-self: center;
+  margin: 0 auto;
   position: relative;
   height: 500px;
   width: 500px;

@@ -1,5 +1,5 @@
 class Ball {
-  constructor(x, y, dx, dy, i, retracting) {
+  constructor(x, y, dx, dy, i, retractingX, retractingY) {
     this.x = x;
     this.y = y;
     this.dx = dx;
@@ -73,7 +73,7 @@ class Ball {
 }
 
 const balls = [];
-const NUM_BALLS = 25;
+const NUM_BALLS = 20;
 const BALL_SIZE = 20;
 const MAX_SPEED = 10;
 const MIN_SPEED = 5;
