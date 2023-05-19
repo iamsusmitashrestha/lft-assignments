@@ -8,8 +8,8 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  background-color: #121212;
-  color: white;
+  /* background-color: #121212; */
+  /* color: white; */
 }
 
 .container-wrapper {
@@ -21,7 +21,7 @@ body {
 }
 
 .container {
-  background-color: #171717;
+  /* background-color: #171717; */
   position: relative;
   height: 500px;
   width: 800px;
@@ -56,7 +56,7 @@ body {
   font-size: 20px;
   font-weight: 600;
   margin-top: 12px;
-  color: #999999;
+  /* color: #999999; */
 }
 
 h2 {
