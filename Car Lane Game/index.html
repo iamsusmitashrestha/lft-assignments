@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Car Game</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="game">
+        <canvas id="canvas"></canvas>
+        <div id="landing">
+          <h1>Let's Play !</h1>
+          <h3>Instructions</h3>
+          <p>Press <strong>space</strong> to start game.</p>
+          <p>
+            Press <strong> left arrow </strong> OR <strong>A</strong> to move
+            left.
+          </p>
+          <p>
+            Press<strong> right arrow </strong> OR <strong>D</strong> to move
+            right.
+          </p>
+          <img src="images/yellow-car.png" id="home-car" alt="" />
+        </div>
+        <div id="try-again">
+          <h1 id="try-again-heading">Oops! Try again</h1>
+          <h3>Instructions</h3>
+          <p>Press <strong>space</strong> to restart game.</p>
+        </div>
+      </div>
+      <div class="game-status">
+        <h1>Car Racing Game</h1>
+        <div>
+          <h2>Score</h2>
+          <h3 id="score">0</h3>
+        </div>
+        <div>
+          <h2>Highest Score</h2>
+          <h3 id="highest-score">0</h3>
+        </div>
+      </div>
+    </div>
+
+    <img src="images/red-car.png" id="red-car" alt="" />
+    <img src="images/boom.gif" id="boom" alt="" />
+    <img src="images/yellow-car.png" id="yellow-car" alt="" />
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
