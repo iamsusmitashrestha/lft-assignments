@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flappy Bird</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <div class="screen" id="landing">
+      <img src="images/background.png" class="screen-background" alt="" />
+      <div class="screen-title">
+        <h1>Flappy Bird</h1>
+        <h3>Instructions</h3>
+        <p>Press <strong> up arrow </strong> to move up.</p>
+        <img src="images/flappy.png" class="screen-bird" alt="" />
+        <button class="play-btn" id="play-btn">
+          <i class="fa-solid fa-play"></i>
+        </button>
+      </div>
+    </div>
+    <div class="screen" id="gameOver">
+      <img src="images/background.png" class="screen-background" alt="" />
+      <div class="screen-title">
+        <h1>Game Over</h1>
+        <h3 id="high-score-title">Highest Score</h3>
+        <h4 id="highest-score">0</h4>
+        <button class="play-btn" id="play-again">
+          <i class="fa-solid fa-play"></i>
+        </button>
+      </div>
+    </div>
+
+    <img src="images/background.png" id="background" alt="" />
+    <h1 id="score">0</h1>
+    <img src="images/pipe.png" alt="" id="pipe" />
+    <img src="images/pipe -inverted.png" alt="" id="pipe-inverted" />
+    <img src="images/sprite.png" alt="" id="bird" />
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
