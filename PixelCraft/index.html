@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <div class="sidebar">
+        <img src="images/Frame 7.png" class="logo" />
+        <div class="link active" data-target="adjust">
+          <i data-feather="sliders"></i>
+          <div class="text">Adjust</div>
+        </div>
+        <div class="link" data-target="filters">
+          <i data-feather="feather"></i>
+          <div class="text">Filters</div>
+        </div>
+      </div>
+
+      <div class="options">
+        <div class="option" id="adjust">
+          <div class="rotate-flip">
+            <h4>Rotate & Flip</h4>
+            <div class="options">
+              <div id="left" class="rotate">
+                <i data-feather="rotate-ccw"></i>
+              </div>
+              <div id="right" class="rotate">
+                <i data-feather="rotate-cw"></i>
+              </div>
+              <div id="horizontal" class="rotate">
+                <i data-feather="feather" class="rotate"></i>
+              </div>
+              <div id="vertical" class="rotate">
+                <i data-feather="feather"></i>
+              </div>
+            </div>
+          </div>
+          <div class="brightness-color">
+            <h4>Brightness & Color</h4>
+            <div class="name">Brightness</div>
+            <input
+              class="filter-slider"
+              id="brightness"
+              type="range"
+              value="100"
+              min="0"
+              max="200"
+            />
+            <div class="name">Contrast</div>
+            <input
+              class="filter-slider"
+              id="contrast"
+              type="range"
+              value="100"
+              min="0"
+              max="200"
+            />
+            <div class="name">Saturation</div>
+            <input
+              class="filter-slider"
+              id="saturation"
+              type="range"
+              value="100"
+              min="0"
+              max="200"
+            />
+            <div class="name">Inversion</div>
+            <input
+              class="filter-slider"
+              id="inversion"
+              type="range"
+              value="0"
+              min="0"
+              max="100"
+            />
+            <div class="name">Grayscale</div>
+            <input
+              class="filter-slider"
+              id="grayscale"
+              type="range"
+              value="0"
+              min="0"
+              max="100"
+            />
+          </div>
+        </div>
+        <div class="option" id="filters">
+          <div class="brightness-color">
+            <div class="name">Vignette</div>
+            <input
+              class="filter-slider"
+              id="vignette"
+              type="range"
+              value="0"
+              step="0.01"
+              min="0"
+              max="1"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="editor">
+        <button id="download">Download</button>
+        <div class="upload-area">
+          <i data-feather="plus"></i>
+          <h6>Drag or upload your image</h6>
+          <input
+            type="file"
+            name="selectedImage"
+            id="file-input"
+            accept="image/*"
+          />
+          <label for="file-input" id="open-image">Open Image</label>
+        </div>
+        <div class="image-holder">
+          <div class="img">
+            <img src="" alt="img" id="image" />
+            <div class="overlay"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+      feather.replace();
+    </script>
+    <script src="sidebar.js"></script>
+    <script src="adjust.js"></script>
+  </body>
+</html>
