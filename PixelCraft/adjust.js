@@ -111,22 +111,31 @@ const saveImage = () => {
     canvas.height
   );
 
-  //   // Add the color stops
-  //   const gradient = ctx.createRadialGradient(
-  //     canvas.width / 2,
-  //     canvas.height / 2,
-  //     0,
-  //     canvas.width / 2,
-  //     canvas.height / 2,
-  //     canvas.width > canvas.height ? canvas.width / 2 : canvas.height / 2
-  //   );
-  //   gradient.addColorStop(0, "rgba(0,0,0,0)");
-  //   gradient.addColorStop(0.25, "rgba(0,0,0,0)");
-  //   gradient.addColorStop(1, "rgba(0,0,0,1)");
+  if (vignette > 0) {
+    const largerSide =
+      canvas.width > canvas.height ? canvas.width : canvas.height;
 
-  //   // Set the fill style and draw a rectangle
-  //   ctx.fillStyle = gradient;
-  //   ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // Add the color stops
+    const gradient = ctx.createRadialGradient(
+      0,
+      0,
+      (largerSide / 2) * 0.25,
+      0,
+      0,
+      largerSide / 2
+    );
+    gradient.addColorStop(0, "rgba(0,0,0,0)");
+    gradient.addColorStop(1, `rgba(0,0,0,${vignette})`);
+
+    // Set the fill style and draw a rectangle
+    ctx.fillStyle = gradient;
+    ctx.fillRect(
+      -canvas.width / 2,
+      -canvas.height / 2,
+      canvas.width,
+      canvas.height
+    );
+  }
 
   const link = document.createElement("a");
   link.download = "image.jpg";
