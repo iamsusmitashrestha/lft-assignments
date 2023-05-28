@@ -19,10 +19,19 @@
           <i data-feather="feather"></i>
           <div class="text">Filters</div>
         </div>
+        <div class="link" data-target="remove-bg">
+          <i data-feather="scissors"></i>
+          <div class="text">Remove</div>
+        </div>
       </div>
-
       <div class="options">
         <div class="option" id="adjust">
+          <div class="crop">
+            <h4>Crop</h4>
+            <button id="crop">
+              <i data-feather="crop"></i>
+            </button>
+          </div>
           <div class="rotate-flip">
             <h4>Rotate & Flip</h4>
             <div class="options">
@@ -78,15 +87,26 @@
               min="0"
               max="100"
             />
-            <div class="name">Grayscale</div>
+            <div class="name">Sepia</div>
             <input
               class="filter-slider"
-              id="grayscale"
+              id="sepia"
               type="range"
               value="0"
               min="0"
               max="100"
             />
+          </div>
+          <button id="save-custom">Save Custom Filter</button>
+          <div id="modal" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <form action="">
+                <label for="fname">Filter Name</label>
+                <input type="text" id="filter-name" name="fname" />
+                <button class="save">Save</button>
+              </form>
+            </div>
           </div>
         </div>
         <div class="option" id="filters">
@@ -102,10 +122,185 @@
               max="1"
             />
           </div>
+          <div class="brightness-color">
+            <div class="name">Filters</div>
+            <button class="filter-button" data-filter="">
+              <div>Original</div>
+              <img class="filter-preview" />
+            </button>
+            <button
+              class="filter-button"
+              data-filter="  contrast(128%) grayscale(0%) hue-rotate(0deg) invert(0%) opacity(100%) saturate(120%) sepia(0%)"
+            >
+              <div>Sweet Sunset</div>
+              <img
+                class="filter-preview"
+                style="
+                  filter: contrast(128%) grayscale(0%) hue-rotate(0deg)
+                    invert(0%) opacity(100%) saturate(120%) sepia(0%);
+                "
+              />
+            </button>
+            <button
+              class="filter-button"
+              data-filter="  contrast(128%) grayscale(0%) hue-rotate(0deg) invert(0%) opacity(100%) saturate(120%) sepia(0%)"
+            >
+              <div>Sweet Sunset</div>
+              <img
+                class="filter-preview"
+                style="
+                  filter: contrast(128%) grayscale(0%) hue-rotate(0deg)
+                    invert(0%) opacity(100%) saturate(120%) sepia(0%);
+                "
+              />
+            </button>
+            <button
+              class="filter-button"
+              data-filter="  brightness(110%) contrast(114%) grayscale(0%) hue-rotate(0deg) invert(0%) opacity(100%) saturate(122%) sepia(0%)"
+            >
+              <div>Desert Morning</div>
+              <img
+                class="filter-preview"
+                style="
+                  filter: brightness(110%) contrast(114%) grayscale(0%)
+                    hue-rotate(0deg) invert(0%) opacity(100%) saturate(122%)
+                    sepia(0%);
+                "
+              />
+            </button>
+            <button
+              class="filter-button"
+              data-filter="contrast(110%) brightness(110%) saturate(120%)"
+            >
+              <div>Food</div>
+              <img
+                class="filter-preview"
+                style="filter: contrast(110%) brightness(110%) saturate(120%)"
+              />
+            </button>
+            <button
+              class="filter-button"
+              data-filter="sepia(40%) saturate(120%) brightness(90%) contrast(90%)"
+            >
+              <div>Vintage</div>
+              <img
+                class="filter-preview"
+                style="
+                  filter: sepia(40%) saturate(120%) brightness(90%)
+                    contrast(90%);
+                "
+              />
+            </button>
+            <button
+              class="filter-button"
+              data-filter="brightness(80%) contrast(120%) saturate(70%) opacity(90%)"
+            >
+              <div>Night</div>
+              <img
+                class="filter-preview"
+                style="
+                  filter: brightness(80%) contrast(120%) saturate(70%)
+                    opacity(90%);
+                "
+              />
+            </button>
+            <button
+              class="filter-button"
+              data-filter="saturate(80%) contrast(120%) opacity(90%)"
+            >
+              <div>Soft Potrait</div>
+              <img
+                class="filter-preview"
+                style="filter: saturate(80%) contrast(120%) opacity(90%)"
+              />
+            </button>
+            <button
+              class="filter-button"
+              data-filter="brightness(90%) contrast(80%) opacity(90%)"
+            >
+              <div>Cloudy</div>
+              <img
+                class="filter-preview"
+                style="filter: brightness(90%) contrast(80%) opacity(90%)"
+              />
+            </button>
+            <button
+              class="filter-button"
+              data-filter="brightness(100%) contrast(97%) grayscale(0%) hue-rotate(330deg) invert(0%) opacity(100%) saturate(111%) sepia(0%)"
+            >
+              <div>Fever</div>
+              <img
+                class="filter-preview"
+                style="
+                  filter: brightness(100%) contrast(97%) grayscale(0%)
+                    hue-rotate(330deg) invert(0%) opacity(100%) saturate(111%)
+                    sepia(0%);
+                "
+              />
+            </button>
+            <button
+              class="filter-button"
+              data-filter="brightness(103%) contrast(114%) grayscale(0%) hue-rotate(0deg) invert(0%) opacity(100%) saturate(122%) sepia(0%)"
+            >
+              <div>Summer Heat</div>
+              <img
+                class="filter-preview"
+                style="
+                  filter: brightness(103%) contrast(114%) grayscale(0%)
+                    hue-rotate(0deg) invert(0%) opacity(100%) saturate(122%)
+                    sepia(0%);
+                "
+              />
+            </button>
+            <button
+              class="filter-button"
+              data-filter="brightness(104%) contrast(104%) grayscale(0%) hue-rotate(0deg) invert(0%) opacity(100%) saturate(122%) sepia(0%)"
+            >
+              <div>Icy Water</div>
+              <img
+                class="filter-preview"
+                style="
+                  filter: brightness(104%) contrast(104%) grayscale(0%)
+                    hue-rotate(0deg) invert(0%) opacity(100%) saturate(122%)
+                    sepia(0%);
+                "
+              />
+            </button>
+
+            <button
+              class="filter-button"
+              data-filter="blur(0.4px) brightness(120%) saturate(150%)"
+            >
+              <div>Dreamy Glow</div>
+              <img
+                class="filter-preview"
+                style="filter: blur(0.4px) brightness(120%) saturate(150%)"
+              />
+            </button>
+            <button
+              class="filter-button"
+              data-filter="sepia(10%) saturation(90%) brightness(100%) contrast(100%)"
+            >
+              <div>Natural Vibes</div>
+              <img
+                class="filter-preview"
+                style="
+                  filter: sepia(10%) saturation(90%) brightness(100%)
+                    contrast(100%);
+                "
+              />
+            </button>
+          </div>
+        </div>
+        <div class="option" id="remove-bg">
+          <button id="remove-background-btn">Remove Background</button>
         </div>
       </div>
       <div class="editor">
-        <button id="download">Download</button>
+        <button id="download">
+          <i data-feather="download"></i>
+          Download
+        </button>
         <div class="upload-area">
           <i data-feather="plus"></i>
           <h6>Drag or upload your image</h6>
@@ -120,7 +315,32 @@
         <div class="image-holder">
           <div class="img">
             <img src="" alt="img" id="image" />
+            <canvas id="image-canvas"></canvas>
             <div class="overlay"></div>
+            <div class="filter-overlay"></div>
+            <div class="crop-overlay">
+              <button
+                draggable="true"
+                data-bound="left"
+                class="left-bound"
+              ></button>
+              <button
+                draggable="true"
+                data-bound="right"
+                class="right-bound"
+              ></button>
+              <button
+                draggable="true"
+                data-bound="bottom"
+                class="bottom-bound"
+              ></button>
+              <button
+                draggable="true"
+                data-bound="top"
+                class="top-bound"
+              ></button>
+            </div>
+            <div class="crop-crop-overlay"></div>
           </div>
         </div>
       </div>
@@ -131,5 +351,6 @@
     </script>
     <script src="sidebar.js"></script>
     <script src="adjust.js"></script>
+    <script src="modal.js"></script>
   </body>
 </html>

@@ -168,7 +168,9 @@ button {
   display: inline-block;
 }
 
-.overlay {
+.overlay,
+.filter-overlay,
+.crop-overlay {
   position: absolute;
   content: "";
   top: 0;
@@ -179,6 +181,78 @@ button {
   height: 100%;
 }
 
+.crop-overlay {
+  display: none;
+  border: 4px dashed #000;
+  margin: -4px;
+  box-sizing: content-box;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: unset;
+  width: unset;
+  z-index: 1000;
+
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.crop-crop-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: unset;
+  width: unset;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.left-bound {
+  position: absolute;
+  left: -4px;
+  top: 50%;
+  width: 4px;
+  height: 48px;
+  transform: translateY(-24px);
+  background-color: var(--primary);
+}
+
+.right-bound {
+  position: absolute;
+  right: -4px;
+  top: 50%;
+  width: 4px;
+  height: 48px;
+  transform: translateY(-24px);
+  background-color: var(--primary);
+}
+
+.top-bound {
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  width: 48px;
+  height: 4px;
+  transform: translateX(-24px);
+  background-color: var(--primary);
+}
+
+.bottom-bound {
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 48px;
+  height: 4px;
+  transform: translateX(-24px);
+  background-color: var(--primary);
+}
+
+.filter-overlay {
+  z-index: 999;
+}
+
 .image-holder img {
   height: 100%;
   object-fit: contain;
@@ -187,7 +261,97 @@ button {
 }
 
 #download {
+  display: flex;
+  gap: 4px;
+  align-items: center;
   position: absolute;
   top: 1rem;
   right: 1rem;
+  background-color: var(--primary);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 4px;
+}
+
+.filter-preview {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  margin-bottom: 32px;
+}
+
+.filter-button:nth-child(even) {
+  margin-right: 6px;
+}
+
+.filter-button div {
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+#save-custom {
+  width: 160px;
+  margin-left: auto;
+  display: block;
+  background-color: var(--primary);
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 100px;
+  top: 500px;
+}
+
+.modal-content {
+  border-radius: 4px;
+  background-color: #fefefe;
+  padding: 12px 20px;
+  width: 100%;
+  box-shadow: 8px 2px 4px rgb(201, 195, 195);
+}
+
+form label {
+  color: black;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid grey;
+  border-radius: 4px;
+}
+
+.save {
+  margin-top: 4px;
+  display: block;
+  background-color: var(--primary);
+  padding: 8px 20px;
+  border-radius: 4px;
+  width: 70px;
+  text-align: center;
+  margin-left: auto;
+}
+
+.close {
+  color: #aaaaaaa3;
+  display: block;
+  width: 18px;
+  margin-left: auto;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }

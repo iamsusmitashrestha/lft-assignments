@@ -20,5 +20,11 @@ links.forEach((link) => {
     link.classList.add("active");
     const option = document.getElementById(link.dataset.target);
     option.style.display = "block";
+
+    if (link.dataset.target === "filters") {
+      document.querySelectorAll(".filter-preview").forEach((preview) => {
+        preview.src = document.querySelector("#image").src;
+      });
+    }
   });
 });
