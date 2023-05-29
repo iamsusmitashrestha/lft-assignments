@@ -9,7 +9,7 @@ const cropOverlay = document.querySelector(".crop-overlay");
 const cropCropOverlay = document.querySelector(".crop-crop-overlay");
 const sliders = document.querySelectorAll(".filter-slider");
 const rotateOptions = document.querySelectorAll(".rotate");
-const filterBtns = document.querySelectorAll(".filter-button");
+let filterBtns = Array.from(document.querySelectorAll(".filter-button"));
 const cropBoundButtons = document.querySelectorAll(".crop-overlay button");
 
 let brightness = "100",
@@ -39,8 +39,33 @@ const loadImage = () => {
 
 fileInput.addEventListener("change", loadImage);
 
+rotateOptions.forEach((option) => {
+  option.addEventListener("click", () => {
+    switch (option.id) {
+      case "left":
+        rotate -= 90;
+        break;
+      case "right":
+        rotate += 90;
+        break;
+      case "horizontal":
+        flipHorizontal = flipHorizontal === 1 ? -1 : 1;
+        break;
+      case "vertical":
+        flipVertical = flipVertical === 1 ? -1 : 1;
+        break;
+
+      default:
+        break;
+    }
+
+    applyFilter();
+  });
+});
+
 const applyFilter = () => {
   image.style.transform = `rotate(${rotate}deg) scale(${flipHorizontal}, ${flipVertical})`;
+  overlay.style.transform = `rotate(${rotate}deg) scale(${flipHorizontal}, ${flipVertical})`;
   image.style.filter = `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturation}%) invert(${inversion}%) sepia(${sepia}%)`;
   overlay.style.backgroundImage = `radial-gradient(circle,rgba(0,0,0,0) 25%,rgba(0,0,0,${vignette}) 100%)`;
   filterOverlay.style.backdropFilter = filter;
@@ -77,59 +102,58 @@ sliders.forEach((slider) => {
   });
 });
 
-//Predefined Filters
-filterBtns.forEach((btn) => {
+const setUpClickListenerOnFilterBtn = (btn) => {
   btn.addEventListener("click", () => {
     filter = btn.dataset.filter;
     applyFilter();
   });
+};
+
+//Predefined Filters
+filterBtns.forEach((btn) => {
+  setUpClickListenerOnFilterBtn(btn);
 });
 
 //Custom Filters
 const save = document.querySelector(".save");
-save.addEventListener("click", () => {
-  console.log("filterName");
-  let filterName = document.querySelector("#filter-name").value;
-  // const items = (() => {
-  //   const fieldValue = localStorage.getItem("custom-filter");
-  //   return fieldValue === null ? [] : JSON.parse(fieldValue);
-  // })();
+const filterName = document.querySelector("#filter-name");
+const filterBtn = document.querySelector(".container");
 
-  // items.push({
-  //   name: filterName,
-  //   brightness: brightness,
-  //   contrast: contrast,
-  //   saturation: saturation,
-  //   inversion: inversion,
-  //   sepia: sepia,
-  // });
-  // localStorage.setItem("custom-filter", JSON.stringify(items));
-  // console.log(items);
-});
+let filtersArray = JSON.parse(localStorage.getItem("custom-filter") ?? []);
 
-rotateOptions.forEach((option) => {
-  option.addEventListener("click", () => {
-    switch (option.id) {
-      case "left":
-        rotate -= 90;
-        break;
-      case "right":
-        rotate += 90;
-        break;
-      case "horizontal":
-        flipHorizontal = flipHorizontal === 1 ? -1 : 1;
-        break;
-      case "vertical":
-        flipVertical = flipVertical === 1 ? -1 : 1;
-        break;
+filtersArray.forEach((filterItem) =>
+  addFilter(filterItem.name, filterItem.filter)
+);
 
-      default:
-        break;
-    }
+function addFilter(name, filter) {
+  const customFilterBtn = document.createElement("button");
+  const filterNameDiv = document.createElement("div");
+  const img = document.createElement("img");
+  img.classList.add("filter-preview");
+  customFilterBtn.classList.add("filter-button");
+  filterBtn.appendChild(customFilterBtn);
+  customFilterBtn.appendChild(filterNameDiv);
+  customFilterBtn.appendChild(img);
+  filterNameDiv.textContent = name;
+  img.style.filter = filter;
+  applyFilter();
+  customFilterBtn.dataset.filter = filter;
+  setUpClickListenerOnFilterBtn(customFilterBtn);
+}
 
-    applyFilter();
+function addCustomFilter() {
+  filtersArray.push({
+    name: filterName.value,
+    filter: `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturation}%) invert(${inversion}%) sepia(${sepia}%)`,
   });
-});
+
+  localStorage.setItem("custom-filter", JSON.stringify(filtersArray));
+  addFilter(filterName.value, filtersArray[filtersArray.length - 1].filter);
+
+  filterName.value = "";
+}
+
+save.addEventListener("click", addCustomFilter);
 
 const saveImage = async () => {
   let canvas = document.createElement("canvas");
@@ -153,6 +177,8 @@ const saveImage = async () => {
 
   if (filter) {
     var img = new Image();
+
+    //Promise is resolved only after image load
     await new Promise((resolve) => {
       img.onload = () => {
         resolve();
@@ -160,13 +186,19 @@ const saveImage = async () => {
 
       img.src = canvas.toDataURL();
     });
+
     ctx.clearRect(
       -canvas.width / 2,
       -canvas.height / 2,
       canvas.width,
       canvas.height
     );
+
     ctx.filter = filter;
+    if (rotate !== 0) {
+      ctx.rotate((rotate * Math.PI) / 180);
+    }
+    ctx.scale(flipHorizontal, flipVertical);
     ctx.drawImage(
       img,
       -canvas.width / 2,
