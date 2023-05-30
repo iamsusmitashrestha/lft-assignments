@@ -136,11 +136,6 @@ button {
   cursor: pointer;
 }
 
-#image-canvas,
-.image-holder {
-  display: none;
-}
-
 .upload-area input {
   all: unset;
   visibility: hidden;
@@ -155,11 +150,14 @@ button {
 }
 
 .image-holder {
+  display: none;
   background-color: #eeeeee;
   width: 100%;
   height: calc(100vh - 10rem);
+  margin: 0 auto;
   transform: translateY(4rem);
   text-align: center;
+  overflow: hidden;
 }
 
 .img {
@@ -184,7 +182,7 @@ button {
 .crop-overlay {
   display: none;
   border: 4px dashed #000;
-  margin: -4px;
+  margin: 0 -4px;
   box-sizing: content-box;
   top: 0;
   left: 0;
@@ -316,7 +314,7 @@ button {
   box-shadow: 8px 2px 4px rgb(201, 195, 195);
 }
 
-form label {
+.modal-content label {
   color: black;
 }
 

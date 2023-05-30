@@ -17,6 +17,8 @@ let brightness = "100",
   contrast = "100",
   inversion = "0",
   sepia = "0";
+blur = "0";
+hueRotate = "0";
 
 let filter = "";
 
@@ -66,7 +68,7 @@ rotateOptions.forEach((option) => {
 const applyFilter = () => {
   image.style.transform = `rotate(${rotate}deg) scale(${flipHorizontal}, ${flipVertical})`;
   overlay.style.transform = `rotate(${rotate}deg) scale(${flipHorizontal}, ${flipVertical})`;
-  image.style.filter = `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturation}%) invert(${inversion}%) sepia(${sepia}%)`;
+  image.style.filter = `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturation}%) invert(${inversion}%) sepia(${sepia}%) blur(${blur}px) hue-rotate(${hueRotate}deg)`;
   overlay.style.backgroundImage = `radial-gradient(circle,rgba(0,0,0,0) 25%,rgba(0,0,0,${vignette}) 100%)`;
   filterOverlay.style.backdropFilter = filter;
 };
@@ -89,6 +91,12 @@ sliders.forEach((slider) => {
         break;
       case "sepia":
         sepia = slider.value;
+        break;
+      case "blur":
+        blur = slider.value;
+        break;
+      case "hue-rotate":
+        hueRotate = slider.value;
         break;
       case "vignette":
         vignette = slider.value;
@@ -144,13 +152,14 @@ function addFilter(name, filter) {
 function addCustomFilter() {
   filtersArray.push({
     name: filterName.value,
-    filter: `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturation}%) invert(${inversion}%) sepia(${sepia}%)`,
+    filter: `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturation}%) invert(${inversion}%) sepia(${sepia}%) blur(${blur}px) hue-rotate(${hueRotate}deg)`,
   });
 
   localStorage.setItem("custom-filter", JSON.stringify(filtersArray));
   addFilter(filterName.value, filtersArray[filtersArray.length - 1].filter);
 
   filterName.value = "";
+  modal.style.display = "none";
 }
 
 save.addEventListener("click", addCustomFilter);
@@ -161,18 +170,29 @@ const saveImage = async () => {
   canvas.width = image.naturalWidth;
   canvas.height = image.naturalHeight;
 
-  ctx.filter = `brightness(${brightness}%) saturate(${saturation}%) invert(${inversion}%) sepia(${sepia}%)`;
+  ctx.filter = `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturation}%) invert(${inversion}%) sepia(${sepia}%) blur(${blur}px) hue-rotate(${hueRotate}deg)`;
   ctx.translate(canvas.width / 2, canvas.height / 2);
   if (rotate !== 0) {
     ctx.rotate((rotate * Math.PI) / 180);
   }
   ctx.scale(flipHorizontal, flipVertical);
+
+  const rect = image.getBoundingClientRect();
+  const leftCropPercent = cropLeft / rect.width;
+  const rightCropPercent = cropRight / rect.width;
+  const topCropPercent = cropTop / rect.height;
+  const bottomCropPercent = cropBottom / rect.height;
+
   ctx.drawImage(
     image,
+    leftCropPercent * canvas.width,
+    topCropPercent * canvas.height,
+    canvas.width * (1 - (leftCropPercent + rightCropPercent)),
+    (1 - (topCropPercent + bottomCropPercent)) * canvas.height,
     -canvas.width / 2,
     -canvas.height / 2,
-    canvas.width,
-    canvas.height
+    canvas.width * (1 - (leftCropPercent + rightCropPercent)),
+    (1 - (topCropPercent + bottomCropPercent)) * canvas.height
   );
 
   if (filter) {
@@ -242,69 +262,4 @@ const saveImage = async () => {
 
 document.querySelector("#download").addEventListener("click", () => {
   saveImage();
-});
-
-let cropLeft = 0,
-  cropRight = 0,
-  cropTop = 0,
-  cropBottom = 0;
-
-let currentDraggingElement = null;
-
-const onCropClicked = () => {
-  cropLeft = 0;
-  cropRight = 0;
-  cropTop = 0;
-  cropBottom = 0;
-  setCropBounds();
-  cropOverlay.style.display = "block";
-};
-
-const setCropBounds = () => {
-  cropOverlay.style.top = `${cropTop}px`;
-  cropOverlay.style.left = `${cropLeft}px`;
-  cropOverlay.style.right = `${cropRight}px`;
-  cropOverlay.style.bottom = `${cropBottom}px`;
-};
-
-document.querySelector("#crop").addEventListener("click", onCropClicked);
-
-cropBoundButtons.forEach((button) => {
-  button.addEventListener("mousedown", (e) => {
-    currentDraggingElement = button;
-    cropCropOverlay.style.pointerEvents = "all";
-  });
-});
-
-window.addEventListener("mouseup", (e) => {
-  if (currentDraggingElement) {
-    currentDraggingElement = null;
-    cropCropOverlay.style.pointerEvents = "none";
-  }
-});
-
-cropCropOverlay.addEventListener("mousemove", (e) => {
-  if (!currentDraggingElement) return;
-
-  const rect = cropCropOverlay.getBoundingClientRect();
-
-  if (e.offsetX > 0) {
-    if (currentDraggingElement.dataset.bound === "left") {
-      cropLeft = e.offsetX;
-    }
-    if (currentDraggingElement.dataset.bound === "right") {
-      cropRight = rect.width - e.offsetX;
-    }
-  }
-
-  if (e.offsetY > 0) {
-    if (currentDraggingElement.dataset.bound === "top") {
-      cropTop = e.offsetY;
-    }
-    if (currentDraggingElement.dataset.bound === "bottom") {
-      cropBottom = rect.height - e.offsetY;
-    }
-  }
-
-  setCropBounds();
 });

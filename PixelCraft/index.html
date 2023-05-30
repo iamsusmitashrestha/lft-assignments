@@ -96,16 +96,32 @@
               min="0"
               max="100"
             />
+            <div class="name">Blur</div>
+            <input
+              class="filter-slider"
+              id="blur"
+              type="range"
+              value="0"
+              min="0"
+              max="64"
+            />
+            <div class="name">Hue Rotate</div>
+            <input
+              class="filter-slider"
+              id="hue-rotate"
+              type="range"
+              value="0"
+              min="0"
+              max="100"
+            />
           </div>
           <button id="save-custom">Save Custom Filter</button>
           <div id="modal" class="modal">
             <div class="modal-content">
               <span class="close">&times;</span>
-              <form action="">
-                <label for="filter-name">Filter Name</label>
-                <input type="text" id="filter-name" name="fname" />
-                <button class="save">Save</button>
-              </form>
+              <label for="filter-name">Filter Name</label>
+              <input type="text" id="filter-name" name="fname" />
+              <button class="save">Save</button>
             </div>
             <ul class="custom-filters"></ul>
           </div>
@@ -290,6 +306,7 @@
           <i data-feather="download"></i>
           Download
         </button>
+        <button id="finalize-crop">Crop</button>
         <div class="upload-area">
           <i data-feather="plus"></i>
           <h6>Drag or upload your image</h6>
@@ -304,7 +321,6 @@
         <div class="image-holder">
           <div class="img">
             <img src="" alt="img" id="image" />
-            <canvas id="image-canvas"></canvas>
             <div class="overlay"></div>
             <div class="filter-overlay"></div>
             <div class="crop-overlay">
@@ -341,5 +357,6 @@
     <script src="sidebar.js"></script>
     <script src="adjust.js"></script>
     <script src="modal.js"></script>
+    <script src="crop.js"></script>
   </body>
 </html>
