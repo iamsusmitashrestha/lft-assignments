@@ -84,6 +84,10 @@ a {
 .option .name {
   margin-bottom: 8px;
 }
+.filter-head {
+  margin-bottom: 8px;
+  color: var(--primary);
+}
 
 .options input[type="range"] {
   width: 100%;
@@ -145,7 +149,8 @@ button {
   visibility: hidden;
 }
 
-#open-image {
+#open-image,
+#finalize-crop {
   cursor: pointer;
   padding: 8px 28px;
   background-color: var(--primary);

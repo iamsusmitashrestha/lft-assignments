@@ -8,6 +8,7 @@ layouts.forEach((layout, index) => {
     collage.classList.add(...layout.classList);
     collage.style.height = "400px";
     collage.style.width = "700px";
+    collage.style.margin = "0 auto";
 
     let frames = collage.querySelectorAll(".frame");
 

@@ -1,3 +1,7 @@
+const cropOverlay = document.querySelector(".crop-overlay");
+const cropCropOverlay = document.querySelector(".crop-crop-overlay");
+const cropBoundButtons = document.querySelectorAll(".crop-overlay button");
+
 let cropLeft = 0,
   cropRight = 0,
   cropTop = 0,

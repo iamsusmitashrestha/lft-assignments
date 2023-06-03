@@ -1,24 +1,24 @@
 const imageHolder = document.querySelector(".image-holder");
 const image = document.querySelector("#image");
+
 const fileInput = document.querySelector("#file-input");
 const openimage = document.querySelector(".open-image");
 const uploadArea = document.querySelector(".upload-area");
-const overlay = document.querySelector(".overlay");
-const filterOverlay = document.querySelector(".filter-overlay");
-const cropOverlay = document.querySelector(".crop-overlay");
-const cropCropOverlay = document.querySelector(".crop-crop-overlay");
+
 const sliders = document.querySelectorAll(".filter-slider");
 const rotateOptions = document.querySelectorAll(".rotate");
+
+const overlay = document.querySelector(".overlay");
+const filterOverlay = document.querySelector(".filter-overlay");
 let filterBtns = Array.from(document.querySelectorAll(".filter-button"));
-const cropBoundButtons = document.querySelectorAll(".crop-overlay button");
 
 let brightness = "100",
   saturation = "100",
   contrast = "100",
   inversion = "0",
-  sepia = "0";
-blur = "0";
-hueRotate = "0";
+  sepia = "0",
+  blur = "0",
+  hueRotate = "0";
 
 let filter = "";
 
