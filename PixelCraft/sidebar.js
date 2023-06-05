@@ -26,5 +26,19 @@ links.forEach((link) => {
         preview.src = document.querySelector("#image").src;
       });
     }
+
+    if (link.dataset.target === "remove-bg") {
+      document.querySelectorAll(".replace-bg-button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const image = btn.querySelector("img");
+          const imageWrapper = document.querySelector(".img");
+
+          imageWrapper.style.backgroundImage = `url(${image.src})`;
+          imageWrapper.style.backgroundSize = `cover`;
+          imageWrapper.style.backgroundRepeat = `no-repeat`;
+          imageWrapper.style.backgroundPosition = `center center`;
+        });
+      });
+    }
   });
 });

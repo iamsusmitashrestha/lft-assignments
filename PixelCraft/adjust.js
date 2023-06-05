@@ -1,5 +1,6 @@
 const imageHolder = document.querySelector(".image-holder");
 const image = document.querySelector("#image");
+const imageWrapper = document.querySelector(".img");
 
 const fileInput = document.querySelector("#file-input");
 const openimage = document.querySelector(".open-image");
@@ -187,6 +188,22 @@ const saveImage = async () => {
   let ctx = canvas.getContext("2d");
   canvas.width = image.naturalWidth;
   canvas.height = image.naturalHeight;
+
+  if (imageWrapper.style.backgroundImage) {
+    var img = new Image();
+    img.src = imageWrapper.style.backgroundImage
+      .replace('url("', "")
+      .replace('")', "");
+
+    //Promise is resolved only after image load
+    await new Promise((resolve) => {
+      img.onload = () => {
+        resolve();
+      };
+    });
+
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+  }
 
   ctx.filter = `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturation}%) invert(${inversion}%) sepia(${sepia}%) blur(${blur}px) hue-rotate(${hueRotate}deg)`;
   ctx.translate(canvas.width / 2, canvas.height / 2);

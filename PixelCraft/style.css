@@ -27,13 +27,13 @@ a {
 }
 
 .link {
+  display: none;
   flex-direction: column;
   align-items: center;
   font-size: 12px;
   margin-top: 24px;
   gap: 4px;
   cursor: pointer;
-  display: none;
 }
 
 .link svg {
@@ -56,9 +56,9 @@ a {
 }
 
 .options {
+  display: none;
   background-color: #171717;
   color: white;
-  display: none;
 }
 
 .logo {
@@ -153,12 +153,18 @@ button {
 }
 
 #open-image,
-#finalize-crop {
+#finalize-crop,
+#remove-btn {
   cursor: pointer;
   padding: 8px 28px;
   background-color: var(--primary);
   border-radius: 8px;
   color: white;
+}
+
+#remove-btn {
+  margin-top: 20px;
+  margin-bottom: 60px;
 }
 
 #finalize-crop {
@@ -275,7 +281,7 @@ button {
 }
 
 #download {
-  display: flex;
+  display: none;
   gap: 4px;
   align-items: center;
   position: absolute;
@@ -285,7 +291,6 @@ button {
   color: white;
   padding: 8px 20px;
   border-radius: 4px;
-  display: none;
 }
 
 .filter-preview {
@@ -295,11 +300,23 @@ button {
   margin-bottom: 32px;
 }
 
+.replace-bg-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.replace-bg-buttons img {
+  width: 100%;
+}
+
 .filter-button:nth-of-type(odd) {
   margin-right: 6px;
 }
 
-.filter-button div {
+.filter-button div,
+.replace-bg-button div {
   margin-bottom: 4px;
   text-align: center;
 }

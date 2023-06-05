@@ -21,6 +21,7 @@ layouts.forEach((layout, index) => {
       let collageImgHolderWrapper = document.createElement("div");
       let collageImgHolder = document.createElement("div");
       let image = document.createElement("img");
+      image.classList.add("collage-img-holder");
       image.setAttribute("src", "");
 
       image.style.height = "100%";

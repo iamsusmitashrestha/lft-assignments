@@ -1,3 +1,5 @@
+const frames = document.querySelectorAll(".collage-maker .frame");
+
 let currentDraggingElement = null;
 
 let mouseDownListener = (e) => {
@@ -20,4 +22,11 @@ window.addEventListener("mousemove", (e) => {
     currentDraggingElement.style.objectPosition =
       50 - e.offsetX + "% " + (50 - e.offsetY) + "%";
   }
+});
+
+frames.forEach((frame) => {
+  frame.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    console.log("drag");
+  });
 });

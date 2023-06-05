@@ -19,12 +19,10 @@
           <i data-feather="feather"></i>
           <div class="text">Filters</div>
         </div>
-        <a href="/background_removal/" target="_blank">
-          <div class="link" data-target="remove-bg">
-            <i data-feather="scissors"></i>
-            <div class="text">Remove</div>
-          </div>
-        </a>
+        <div class="link" data-target="remove-bg">
+          <i data-feather="scissors"></i>
+          <div class="text">Remove</div>
+        </div>
         <a href="/collage/" target="_blank">
           <div class="link" data-target="remove-bg">
             <i data-feather="grid"></i>
@@ -135,6 +133,7 @@
             </div>
           </div>
         </div>
+
         <div class="option" id="filters">
           <div>
             <div class="name">Vignette</div>
@@ -157,7 +156,7 @@
               </button>
               <button
                 class="filter-button"
-                data-filter="  contrast(128%) grayscale(0%) hue-rotate(0deg) invert(0%) opacity(100%) saturate(120%) sepia(0%)"
+                data-filter="contrast(128%) grayscale(0%) hue-rotate(0deg) invert(0%) opacity(100%) saturate(120%) sepia(0%)"
               >
                 <div>Sweet Sunset</div>
                 <img
@@ -294,6 +293,29 @@
             </div>
           </div>
         </div>
+
+        <div class="option" id="remove-bg">
+          <button id="remove-btn">Remove Background</button>
+
+          <h4>Background Replacement</h4>
+          <div class="replace-bg-buttons">
+            <button
+              class="replace-bg-button"
+              data-filter="contrast(128%) grayscale(0%) hue-rotate(0deg) invert(0%) opacity(100%) saturate(120%) sepia(0%)"
+            >
+              <div>Office</div>
+              <img class="filter-preview" src="/images/office.jpg" />
+            </button>
+
+            <button
+              class="replace-bg-button"
+              data-filter="contrast(128%) grayscale(0%) hue-rotate(0deg) invert(0%) opacity(100%) saturate(120%) sepia(0%)"
+            >
+              <div>Beach</div>
+              <img class="filter-preview" src="/images/beach.jpg" />
+            </button>
+          </div>
+        </div>
       </div>
       <div class="editor">
         <button id="download">
@@ -352,5 +374,6 @@
     <script src="adjust.js"></script>
     <script src="modal.js"></script>
     <script src="crop.js"></script>
+    <script src="remove_bg.js"></script>
   </body>
 </html>
