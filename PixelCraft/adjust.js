@@ -12,6 +12,10 @@ const overlay = document.querySelector(".overlay");
 const filterOverlay = document.querySelector(".filter-overlay");
 let filterBtns = Array.from(document.querySelectorAll(".filter-button"));
 
+const linkSidebar = document.querySelectorAll(".link");
+const optionsSidebar = document.querySelector(".options");
+const download = document.querySelector("#download");
+
 let brightness = "100",
   saturation = "100",
   contrast = "100",
@@ -37,6 +41,11 @@ const loadImage = () => {
 
   uploadArea.style.display = "none";
   imageHolder.style.display = "block";
+  linkSidebar.forEach((el) => {
+    el.style.display = "flex";
+  });
+  optionsSidebar.style.display = "block";
+  download.style.display = "flex";
 };
 
 fileInput.addEventListener("change", loadImage);
@@ -269,6 +278,6 @@ const saveImage = async () => {
   link.click();
 };
 
-document.querySelector("#download").addEventListener("click", () => {
+download.addEventListener("click", () => {
   saveImage();
 });

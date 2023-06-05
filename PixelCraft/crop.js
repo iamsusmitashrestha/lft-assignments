@@ -1,6 +1,7 @@
 const cropOverlay = document.querySelector(".crop-overlay");
 const cropCropOverlay = document.querySelector(".crop-crop-overlay");
 const cropBoundButtons = document.querySelectorAll(".crop-overlay button");
+const finalizeCrop = document.querySelector("#finalize-crop");
 
 let cropLeft = 0,
   cropRight = 0,
@@ -16,6 +17,7 @@ const onCropClicked = () => {
   imageHolder.style.height = "calc(100vh - 10rem)";
   imageWrapper.style.transform = "unset";
   cropOverlay.style.display = "block";
+  finalizeCrop.style.display = "block";
 };
 
 const setCropBounds = () => {
@@ -35,6 +37,7 @@ document.querySelector("#finalize-crop").addEventListener("click", () => {
   imageHolder.style.height = rect.height - cropBottom - cropTop + "px";
   imageWrapper.style.transform = `translate(-${cropLeft}px,-${cropTop}px)`;
   cropOverlay.style.display = "none";
+  finalizeCrop.style.display = "none";
 });
 
 cropBoundButtons.forEach((button) => {

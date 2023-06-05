@@ -18,6 +18,6 @@ window.addEventListener("mouseup", () => {
 window.addEventListener("mousemove", (e) => {
   if (currentDraggingElement) {
     currentDraggingElement.style.objectPosition =
-      "50% " + (50 - e.offsetY) + "%";
+      50 - e.offsetX + "% " + (50 - e.offsetY) + "%";
   }
 });

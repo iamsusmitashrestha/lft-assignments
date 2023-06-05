@@ -31,7 +31,7 @@ layouts.forEach((layout, index) => {
       input.accept = "image/*";
       input.classList.add("collage-file-input");
       input.id = `file-input${index}`;
-      plus.setAttribute("data-feather", "plus-circle");
+      plus.setAttribute("data-feather", "plus");
       addBtn.appendChild(input);
       addBtn.appendChild(plus);
       collageImgHolder.appendChild(image);

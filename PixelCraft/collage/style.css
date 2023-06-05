@@ -29,6 +29,10 @@ body {
   margin: 0 auto;
 }
 
+.collage-maker {
+  margin-top: 160px;
+}
+
 .layout-designs {
   display: flex;
   gap: 20px;
@@ -50,8 +54,8 @@ button {
   gap: 4px;
   align-items: center;
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 10rem;
+  right: 2rem;
   background-color: var(--primary);
   padding: 8px 20px;
   border-radius: 4px;
@@ -167,4 +171,9 @@ button {
 .active,
 .active * {
   border-color: var(--primary) !important;
+}
+
+.collage-maker .active,
+.collage-maker .active div {
+  border: 2px solid white !important;
 }

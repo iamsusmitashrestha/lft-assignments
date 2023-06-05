@@ -27,13 +27,13 @@ a {
 }
 
 .link {
-  display: flex;
   flex-direction: column;
   align-items: center;
   font-size: 12px;
   margin-top: 24px;
   gap: 4px;
   cursor: pointer;
+  display: none;
 }
 
 .link svg {
@@ -58,6 +58,7 @@ a {
 .options {
   background-color: #171717;
   color: white;
+  display: none;
 }
 
 .logo {
@@ -117,10 +118,6 @@ a {
   padding: 0 24px;
 }
 
-.editor {
-  position: relative;
-}
-
 .upload-area {
   position: absolute;
   top: 50%;
@@ -130,8 +127,8 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 500px;
-  height: 300px;
+  width: 800px;
+  height: 500px;
   border: 2px dashed grey;
 }
 
@@ -162,6 +159,10 @@ button {
   background-color: var(--primary);
   border-radius: 8px;
   color: white;
+}
+
+#finalize-crop {
+  display: none;
 }
 
 .image-holder {
@@ -284,6 +285,7 @@ button {
   color: white;
   padding: 8px 20px;
   border-radius: 4px;
+  display: none;
 }
 
 .filter-preview {
@@ -343,7 +345,7 @@ input[type="text"] {
 }
 
 .save {
-  margin-top: 4px;
+  margin-top: 20px;
   display: block;
   background-color: var(--primary);
   padding: 8px 20px;
