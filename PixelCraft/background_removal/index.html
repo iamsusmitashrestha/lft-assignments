@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Background Removal</title>
+  </head>
+  <link rel="stylesheet" href="style.css" />
+  <body>
+    <div class="upload-area">
+      <i data-feather="plus"></i>
+      <h6>Drag or upload your image</h6>
+      <input
+        type="file"
+        name="selectedImage"
+        id="image-input"
+        accept="image/*"
+      />
+      <label for="image-input" id="open-image">Open Image</label>
+    </div>
+
+    <canvas id="canvas"></canvas>
+
+    <script src="remove_bg.js"></script>
+  </body>
+</html>

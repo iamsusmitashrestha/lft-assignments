@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>PixelCraft</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -19,10 +19,12 @@
           <i data-feather="feather"></i>
           <div class="text">Filters</div>
         </div>
-        <div class="link" data-target="remove-bg">
-          <i data-feather="scissors"></i>
-          <div class="text">Remove</div>
-        </div>
+        <a href="/background_removal/" target="_blank">
+          <div class="link" data-target="remove-bg">
+            <i data-feather="scissors"></i>
+            <div class="text">Remove</div>
+          </div>
+        </a>
         <a href="/collage/" target="_blank">
           <div class="link" data-target="remove-bg">
             <i data-feather="grid"></i>
@@ -48,14 +50,16 @@
                 <i data-feather="rotate-cw"></i>
               </div>
               <div id="horizontal" class="rotate">
-                <i data-feather="feather" class="rotate"></i>
+                <i data-feather="chevron-left" class="rotate"></i>
+                <i data-feather="chevron-right" class="rotate"></i>
               </div>
               <div id="vertical" class="rotate">
-                <i data-feather="feather"></i>
+                <i data-feather="chevron-up"></i>
+                <i data-feather="chevron-down"></i>
               </div>
             </div>
           </div>
-          <div class="brightness-color">
+          <div>
             <h4>Brightness & Color</h4>
             <div class="name">Brightness</div>
             <input
@@ -132,7 +136,7 @@
           </div>
         </div>
         <div class="option" id="filters">
-          <div class="brightness-color">
+          <div>
             <div class="name">Vignette</div>
             <input
               class="filter-slider"
@@ -144,7 +148,7 @@
               max="1"
             />
           </div>
-          <div class="brightness-color">
+          <div>
             <h4 class="filter-head">Predefined Filters</h4>
             <div class="container">
               <button class="filter-button" data-filter="">
@@ -234,20 +238,7 @@
                   style="filter: brightness(90%) contrast(80%) opacity(90%)"
                 />
               </button>
-              <button
-                class="filter-button"
-                data-filter="brightness(100%) contrast(97%) grayscale(0%) hue-rotate(330deg) invert(0%) opacity(100%) saturate(111%) sepia(0%)"
-              >
-                <div>Fever</div>
-                <img
-                  class="filter-preview"
-                  style="
-                    filter: brightness(100%) contrast(97%) grayscale(0%)
-                      hue-rotate(330deg) invert(0%) opacity(100%) saturate(111%)
-                      sepia(0%);
-                  "
-                />
-              </button>
+
               <button
                 class="filter-button"
                 data-filter="brightness(103%) contrast(114%) grayscale(0%) hue-rotate(0deg) invert(0%) opacity(100%) saturate(122%) sepia(0%)"
@@ -303,9 +294,9 @@
             </div>
           </div>
         </div>
-        <div class="option" id="remove-bg">
+        <!-- <div class="option" id="remove-bg">
           <button id="remove-background-btn">Remove Background</button>
-        </div>
+        </div> -->
       </div>
       <div class="editor">
         <button id="download">

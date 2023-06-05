@@ -3,10 +3,12 @@ const collageMaker = document.querySelector(".collage-maker");
 
 layouts.forEach((layout, index) => {
   layout.addEventListener("click", () => {
+    buildIndicators(index);
+
     const collage = document.createElement("div");
     collage.innerHTML = layout.innerHTML;
     collage.classList.add(...layout.classList);
-    collage.style.height = "400px";
+    collage.style.height = "500px";
     collage.style.width = "700px";
     collage.style.margin = "0 auto";
 
@@ -29,7 +31,7 @@ layouts.forEach((layout, index) => {
       input.accept = "image/*";
       input.classList.add("collage-file-input");
       input.id = `file-input${index}`;
-      plus.setAttribute("data-feather", "plus");
+      plus.setAttribute("data-feather", "plus-circle");
       addBtn.appendChild(input);
       addBtn.appendChild(plus);
       collageImgHolder.appendChild(image);
@@ -155,3 +157,13 @@ const saveCollage = () => {
 document.querySelector("#save").addEventListener("click", () => {
   saveCollage();
 });
+
+const buildIndicators = (index) => {
+  const layoutOptions = document.querySelectorAll(".layout-designs button");
+
+  if (document.querySelector(".active") !== null) {
+    document.querySelector(".active").classList.remove("active");
+  }
+
+  layoutOptions[index].classList.add("active");
+};

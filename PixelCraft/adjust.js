@@ -41,6 +41,15 @@ const loadImage = () => {
 
 fileInput.addEventListener("change", loadImage);
 
+// uploadArea.addEventListener("drop", (e) => {
+//   console.log("drop");
+//   e.preventDefault();
+//   const file = e.dataTransfer.file;
+//   image.src = URL.createObjectURL(file);
+//   uploadArea.style.display = "none";
+//   imageHolder.style.display = "block";
+// });
+
 rotateOptions.forEach((option) => {
   option.addEventListener("click", () => {
     switch (option.id) {

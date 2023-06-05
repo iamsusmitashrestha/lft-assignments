@@ -22,7 +22,7 @@ a {
 
 .page {
   display: grid;
-  grid-template-columns: auto 300px 1fr;
+  grid-template-columns: auto 350px 1fr;
   height: 100vh;
 }
 
@@ -109,6 +109,12 @@ a {
 .options svg {
   height: 16px;
   width: 16px;
+}
+
+.rotate-flip #vertical {
+  display: flex;
+  flex-direction: column;
+  padding: 0 24px;
 }
 
 .editor {
@@ -287,7 +293,7 @@ button {
   margin-bottom: 32px;
 }
 
-.filter-button:nth-child(even) {
+.filter-button:nth-of-type(odd) {
   margin-right: 6px;
 }
 
