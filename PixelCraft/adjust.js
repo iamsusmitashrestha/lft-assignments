@@ -39,6 +39,7 @@ const loadImage = () => {
   //Return if user has not selected image
   if (!file) return;
   image.src = URL.createObjectURL(file);
+  console.log(image.src);
 
   uploadArea.style.display = "none";
   imageHolder.style.display = "block";
@@ -50,15 +51,6 @@ const loadImage = () => {
 };
 
 fileInput.addEventListener("change", loadImage);
-
-// uploadArea.addEventListener("drop", (e) => {
-//   console.log("drop");
-//   e.preventDefault();
-//   const file = e.dataTransfer.file;
-//   image.src = URL.createObjectURL(file);
-//   uploadArea.style.display = "none";
-//   imageHolder.style.display = "block";
-// });
 
 rotateOptions.forEach((option) => {
   option.addEventListener("click", () => {
@@ -207,9 +199,11 @@ const saveImage = async () => {
 
   ctx.filter = `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturation}%) invert(${inversion}%) sepia(${sepia}%) blur(${blur}px) hue-rotate(${hueRotate}deg)`;
   ctx.translate(canvas.width / 2, canvas.height / 2);
+
   if (rotate !== 0) {
     ctx.rotate((rotate * Math.PI) / 180);
   }
+
   ctx.scale(flipHorizontal, flipVertical);
 
   const rect = image.getBoundingClientRect();
@@ -250,6 +244,7 @@ const saveImage = async () => {
     );
 
     ctx.filter = filter;
+
     if (rotate !== 0) {
       ctx.rotate((rotate * Math.PI) / 180);
     }
@@ -281,6 +276,7 @@ const saveImage = async () => {
 
     // Set the fill style and draw a rectangle
     ctx.fillStyle = gradient;
+
     ctx.fillRect(
       -canvas.width / 2,
       -canvas.height / 2,
@@ -295,6 +291,6 @@ const saveImage = async () => {
   link.click();
 };
 
-download.addEventListener("click", () => {
-  saveImage();
+download.addEventListener("click", async () => {
+  await saveImage();
 });

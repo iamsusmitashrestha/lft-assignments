@@ -21,9 +21,7 @@ layouts.forEach((layout, index) => {
       let collageImgHolderWrapper = document.createElement("div");
       let collageImgHolder = document.createElement("div");
       let image = document.createElement("img");
-      image.classList.add("collage-img-holder");
       image.setAttribute("src", "");
-
       image.style.height = "100%";
       image.style.width = "100%";
       image.style.objectFit = "cover";
@@ -35,6 +33,7 @@ layouts.forEach((layout, index) => {
       plus.setAttribute("data-feather", "plus");
       addBtn.appendChild(input);
       addBtn.appendChild(plus);
+      collageImgHolder.classList.add("img-holder");
       collageImgHolder.appendChild(image);
       collageImgHolderWrapper.appendChild(addBtn);
       collageImgHolderWrapper.appendChild(collageImgHolder);
@@ -81,34 +80,14 @@ const saveCollage = () => {
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
   const layout = document.querySelector(".collage-maker .layout");
-  canvas.width = layout.naturalWidth;
-  canvas.height = layout.naturalHeight;
-  // const images = layout.querySelectorAll("img");
-  // console.log(...images);
-
-  // Set the canvas dimensions to match the layout dimensions
-  canvas.width = layout.offsetWidth;
-  canvas.height = layout.offsetHeight;
-
-  // let offsetX = 0;
-  // let offsetY = 0;
-
-  // // Draw each image onto the canvas
-  // images.forEach((image) => {
-  //   console.log(offsetX);
-  //   console.log(offsetY);
-  //   ctx.drawImage(image, offsetX, offsetY, image.width, image.height);
-  //   if (offsetX  <= canvas.width-10) {
-  //     offsetX += image.width;
-  //   } else {
-  //     offsetX = 0;
-  //     offsetY += image.height;
-  //   }
-  // });
-
-  const frames = layout.querySelectorAll(".frame");
 
   const layoutRect = layout.getBoundingClientRect();
+
+  // Set the canvas dimensions to match the layout dimensions
+  canvas.width = layoutRect.width;
+  canvas.height = layoutRect.height;
+
+  const frames = layout.querySelectorAll(".frame");
 
   frames.forEach((frame) => {
     const frameRect = frame.getBoundingClientRect();
@@ -118,35 +97,6 @@ const saveCollage = () => {
     const offsetY = frameRect.top - layoutRect.top;
 
     ctx.drawImage(image, offsetX, offsetY, image.width, image.height);
-
-    // const imageAspectRatio = image.naturalWidth / image.naturalHeight;
-    // const targetAspectRatio = frameRect.width / frameRect.height;
-
-    // let targetWidth = frameRect.width;
-    // let targetHeight = frameRect.height;
-
-    // // Calculate the scaling and cropping values based on the aspect ratios
-    // if (imageAspectRatio > targetAspectRatio) {
-    //   targetHeight = frameRect.height;
-    //   targetWidth = frameRect.height * imageAspectRatio;
-    //   offsetX += (frameRect.width - targetWidth) / 2;
-    // } else {
-    //   targetWidth = frameRect.width;
-    //   targetHeight = frameRect.width / imageAspectRatio;
-    //   offsetY += (frameRect.height - targetHeight) / 2;
-    // }
-
-    // ctx.drawImage(
-    //   image,
-    //   0,
-    //   0,
-    //   image.naturalWidth,
-    //   image.naturalHeight,
-    //   offsetX,
-    //   offsetY,
-    //   targetWidth,
-    //   targetHeight
-    // );
   });
 
   const link = document.createElement("a");
@@ -154,6 +104,10 @@ const saveCollage = () => {
   link.href = canvas.toDataURL();
   link.click();
 };
+
+document.querySelector("#save").addEventListener("click", () => {
+  saveCollage();
+});
 
 document.querySelector("#save").addEventListener("click", () => {
   saveCollage();
@@ -168,3 +122,34 @@ const buildIndicators = (index) => {
 
   layoutOptions[index].classList.add("active");
 };
+
+// ctx.drawImage(image, offsetX, offsetY, image.width, image.height);
+
+// const imageAspectRatio = image.naturalWidth / image.naturalHeight;
+// const targetAspectRatio = frameRect.width / frameRect.height;
+
+// let targetWidth = frameRect.width;
+// let targetHeight = frameRect.height;
+
+// // Calculate the scaling and cropping values based on the aspect ratios
+// if (imageAspectRatio > targetAspectRatio) {
+//   targetHeight = frameRect.height;
+//   targetWidth = frameRect.height * imageAspectRatio;
+//   offsetX += (frameRect.width - targetWidth) / 2;
+// } else {
+//   targetWidth = frameRect.width;
+//   targetHeight = frameRect.width / imageAspectRatio;
+//   offsetY += (frameRect.height - targetHeight) / 2;
+// }
+
+// ctx.drawImage(
+//   image,
+//   0,
+//   0,
+//   image.naturalWidth,
+//   image.naturalHeight,
+//   offsetX,
+//   offsetY,
+//   targetWidth,
+//   targetHeight
+// );

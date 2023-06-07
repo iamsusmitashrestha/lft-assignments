@@ -1,4 +1,5 @@
-const frames = document.querySelectorAll(".collage-maker .frame");
+const frames = document.querySelectorAll(".collage-img-holder");
+const imgHolders = document.querySelectorAll(".img-holder");
 
 let currentDraggingElement = null;
 
@@ -24,9 +25,10 @@ window.addEventListener("mousemove", (e) => {
   }
 });
 
-frames.forEach((frame) => {
-  frame.addEventListener("dragover", (e) => {
+imgHolders.forEach((holder) => {
+  holder.addEventListener("dragover", (e) => {
     e.preventDefault();
+    holder.classList.add("hovered");
     console.log("drag");
   });
 });
