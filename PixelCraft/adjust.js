@@ -138,7 +138,7 @@ const save = document.querySelector(".save");
 const filterName = document.querySelector("#filter-name");
 const filterBtn = document.querySelector(".container");
 
-let filtersArray = JSON.parse(localStorage.getItem("custom-filter") ?? []);
+let filtersArray = JSON.parse(localStorage.getItem("custom-filter") ?? "[]");
 
 filtersArray.forEach((filterItem) =>
   addFilter(filterItem.name, filterItem.filter)

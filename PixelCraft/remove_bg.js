@@ -11,6 +11,7 @@ const removeBackground = () => {
   // remove background from the new canvas
 
   const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
   //color array pixels
   const pixels = imageData.data;
 

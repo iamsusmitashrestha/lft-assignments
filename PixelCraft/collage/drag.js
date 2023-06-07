@@ -24,11 +24,3 @@ window.addEventListener("mousemove", (e) => {
       50 - e.offsetX + "% " + (50 - e.offsetY) + "%";
   }
 });
-
-imgHolders.forEach((holder) => {
-  holder.addEventListener("dragover", (e) => {
-    e.preventDefault();
-    holder.classList.add("hovered");
-    console.log("drag");
-  });
-});

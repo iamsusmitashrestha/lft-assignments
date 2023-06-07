@@ -21,6 +21,7 @@ layouts.forEach((layout, index) => {
       let collageImgHolderWrapper = document.createElement("div");
       let collageImgHolder = document.createElement("div");
       let image = document.createElement("img");
+
       image.setAttribute("src", "");
       image.style.height = "100%";
       image.style.width = "100%";
@@ -109,10 +110,6 @@ document.querySelector("#save").addEventListener("click", () => {
   saveCollage();
 });
 
-document.querySelector("#save").addEventListener("click", () => {
-  saveCollage();
-});
-
 const buildIndicators = (index) => {
   const layoutOptions = document.querySelectorAll(".layout-designs button");
 
@@ -122,34 +119,3 @@ const buildIndicators = (index) => {
 
   layoutOptions[index].classList.add("active");
 };
-
-// ctx.drawImage(image, offsetX, offsetY, image.width, image.height);
-
-// const imageAspectRatio = image.naturalWidth / image.naturalHeight;
-// const targetAspectRatio = frameRect.width / frameRect.height;
-
-// let targetWidth = frameRect.width;
-// let targetHeight = frameRect.height;
-
-// // Calculate the scaling and cropping values based on the aspect ratios
-// if (imageAspectRatio > targetAspectRatio) {
-//   targetHeight = frameRect.height;
-//   targetWidth = frameRect.height * imageAspectRatio;
-//   offsetX += (frameRect.width - targetWidth) / 2;
-// } else {
-//   targetWidth = frameRect.width;
-//   targetHeight = frameRect.width / imageAspectRatio;
-//   offsetY += (frameRect.height - targetHeight) / 2;
-// }
-
-// ctx.drawImage(
-//   image,
-//   0,
-//   0,
-//   image.naturalWidth,
-//   image.naturalHeight,
-//   offsetX,
-//   offsetY,
-//   targetWidth,
-//   targetHeight
-// );
