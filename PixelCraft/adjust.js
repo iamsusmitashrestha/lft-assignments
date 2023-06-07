@@ -182,7 +182,7 @@ const saveImage = async () => {
   canvas.height = image.naturalHeight;
 
   if (imageWrapper.style.backgroundImage) {
-    var img = new Image();
+    const img = new Image();
     img.src = imageWrapper.style.backgroundImage
       .replace('url("', "")
       .replace('")', "");
@@ -225,15 +225,14 @@ const saveImage = async () => {
   );
 
   if (filter) {
-    var img = new Image();
+    const img = new Image();
+    img.src = canvas.toDataURL();
 
     //Promise is resolved only after image load
     await new Promise((resolve) => {
       img.onload = () => {
         resolve();
       };
-
-      img.src = canvas.toDataURL();
     });
 
     ctx.clearRect(
@@ -248,7 +247,9 @@ const saveImage = async () => {
     if (rotate !== 0) {
       ctx.rotate((rotate * Math.PI) / 180);
     }
+
     ctx.scale(flipHorizontal, flipVertical);
+
     ctx.drawImage(
       img,
       -canvas.width / 2,
@@ -271,6 +272,7 @@ const saveImage = async () => {
       0,
       largerSide / 2
     );
+
     gradient.addColorStop(0, "rgba(0,0,0,0)");
     gradient.addColorStop(1, `rgba(0,0,0,${vignette})`);
 
